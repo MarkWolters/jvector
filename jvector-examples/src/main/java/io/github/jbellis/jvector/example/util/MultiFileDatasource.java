@@ -30,6 +30,7 @@ public class MultiFileDatasource {
     public final Path basePath;
     public final Path queriesPath;
     public final Path groundTruthPath;
+    private final static String DATASET_HASH = System.getenv("DATASET_HASH");
 
     public MultiFileDatasource(String name, String basePath, String queriesPath, String groundTruthPath) {
         this.name = name;
@@ -63,9 +64,9 @@ public class MultiFileDatasource {
                                                               "wikipedia_squad/100k/cohere_embed-english-v3.0_1024_query_vectors_10000.fvec",
                                                               "wikipedia_squad/100k/cohere_embed-english-v3.0_1024_indices_b100000_q10000_k100.ivec"));
         put("cohere-english-v3-1M", new MultiFileDatasource("cohere-english-v3-1M",
-                "wikipedia_squad/1M/cohere_embed-english-v3.0_1024_base_vectors_1000000.fvec",
-                "wikipedia_squad/1M/cohere_embed-english-v3.0_1024_query_vectors_10000.fvec",
-                "wikipedia_squad/1M/cohere_embed-english-v3.0_1024_indices_b1000000_q10000_k100.ivec"));
+                DATASET_HASH + "/cohere/cohere_wikipedia_v3/cohere_wiki_en_flat_base_1m_norm.fvecs",
+                DATASET_HASH + "/cohere/cohere_wikipedia_v3/cohere_wiki_en_flat_query_10k_norm.fvecs",
+                DATASET_HASH + "/cohere/cohere_wikipedia_v3/cohere_wiki_en_flat_gt_1m_ip_k100.ivecs"));
         put("colbert-10M", new MultiFileDatasource("colbert-10M",
                                                    "wikipedia_squad/10M/colbertv2.0_128_base_vectors_10000000.fvec",
                                                    "wikipedia_squad/10M/colbertv2.0_128_query_vectors_100000.fvec",
